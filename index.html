@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo Interactivo: Coccidios</title>
+    <script src="https://kit.fontawesome.com/3e96da98fd.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuración Tailwind para forzar Dark Mode -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dark font-sans bg-gray-900 text-gray-100 min-h-screen p-4 sm:p-8  text-center">
+
+    <div class="max-w-6xl mx-auto bg-gray-800 p-6 sm:p-10 rounded-2xl shadow-xl border border-gray-700">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-teal-400 mb-2">Coccidios: El Ciclo Comparado</h1>
+        <p class="text-gray-400 mb-8 text-lg">
+            Secuencie el ciclo de <i><u>Eimeria spp</u></i> (Actividad 1) y compare los ciclos con otros coccidios (Actividad 2).
+        </p>
+                
+
+        <!-- 1. El Ciclo de Eimeria: Secuenciación (Actividad 1) -->
+        <section class="mb-10 p-5 border border-gray-700 rounded-xl bg-gray-700/50">
+            <h2 class="text-2xl font-bold text-indigo-400 mb-4 border-b border-gray-600 pb-2">1. Actividad: Secuenciación del Ciclo Monoxeno de <i><u>Eimeria spp</u></i></h2>
+            <p class="text-gray-400 mb-4 text-lg">
+                Ordene los siguientes pasos haciendo click en la opción y luego click en la celda correspondiente.
+            </p>
+
+            <!-- Contenedor de Opciones Clicables para Eimeria -->
+            <div class="mb-6 p-4 bg-gray-800 rounded-lg shadow-inner border border-gray-700">
+                <h3 class="font-bold text-gray-400 mb-3 text-lg">Opciones (Click para seleccionar):</h3>
+                <div id="eimeria-options" class="flex flex-wrap gap-3 text-base justify-center">
+                </div>
+            </div>
+            
+            <!-- Contenedor de Targets para Eimeria: Forzado a una columna -->
+            <div id="eimeria-targets" class="grid grid-cols-1 gap-4">
+            </div>
+
+            <div class="mt-6 flex justify-center items-center">
+                <button 
+                    onclick="checkEimeriaSequence()" 
+                    class="px-6 py-3 bg-indigo-500 text-white font-bold rounded-xl shadow-lg hover:bg-indigo-600 transition duration-200 transform hover:scale-105 active:scale-95 text-lg">
+                    Verificar
+                </button>
+            </div>
+            <div id="feedback-eimeria" class="mt-4 p-4 text-center rounded-xl font-bold text-white hidden text-lg"></div>
+        </section>
+
+
+        <!-- 2. Evaluación Final: La Tabla de Coccidios (Actividad 2) -->
+        <section>
+            <h2 class="text-2xl font-bold text-indigo-400 mb-4 border-b border-gray-600 pb-2">2. Actividad: Comparación de Ciclos Biológicos</h2>
+            <p class="text-gray-400 mb-4 text-lg">
+                Complete la tabla haciendo click en la opción y luego click en la celda correspondiente.
+            </p>
+
+            <!-- Contenedor de Opciones Clicables para Coccidia (Ahora agrupadas) -->
+            <div class="mb-6 p-4 bg-gray-700 rounded-lg shadow-inner border border-gray-600">
+                <h3 class="font-bold text-gray-400 mb-3 text-lg">Click para seleccionar y click para soltar:</h3>
+                <div id="coccidia-options" class="divide-y divide-gray-600">
+                </div>
+            </div>
+
+            <div class="overflow-x-auto rounded-xl shadow-inner border border-gray-600 p-2">
+                <table class="min-w-full divide-y divide-gray-600">
+                    <thead class="bg-gray-700">
+                        <tr>
+                            <th class="px-3 py-3 text-left text-sm font-bold text-teal-400 uppercase tracking-wider min-w-[150px] text-center">Coccidio</th>
+                            <th class="px-3 py-3 text-center text-sm font-bold text-teal-400 uppercase tracking-wider min-w-[150px]">Hospedador Definitivo</th>
+                            <th class="px-3 py-3 text-center text-sm font-bold text-teal-400 uppercase tracking-wider min-w-[180px]">Forma infectante para HD</th>
+                            <th class="px-3 py-3 text-center text-sm font-bold text-teal-400 uppercase tracking-wider min-w-[150px]">Tipo de Ciclo</th>
+                            <th class="px-3 py-3 text-center text-sm font-bold text-teal-400 uppercase tracking-wider min-w-[200px]">Forma Enquistada o Tisular</th>
+                        </tr>
+                    </thead>
+                    <tbody id="coccidia-table-body" class="bg-gray-800 divide-y divide-gray-700 text-center">
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="mt-6 flex justify-center items-center">
+                <button 
+                    id="check-button-coccidia" 
+                    onclick="checkCoccidiaTable()" 
+                    class="px-6 py-3 bg-indigo-500 text-white font-bold rounded-xl shadow-lg hover:bg-indigo-600 transition duration-200 transform hover:scale-105 active:scale-95 text-lg">
+                    Verificar
+                </button>
+<!--                 <button 
+                    id="reset-button-all" 
+                    onclick="initializeAll()" 
+                    class="px-6 py-3 bg-red-500 text-white font-bold rounded-xl shadow-lg hover:bg-red-600 transition duration-200 transform hover:scale-105 active:scale-95 text-lg">
+                    Reiniciar Todas las Actividades
+                </button> -->
+            </div>
+
+            <div id="feedback-coccidia" class="mt-4 p-4 text-center rounded-xl font-bold text-white hidden text-lg"></div>
+
+        </section>
+
+    </div>
+    <footer class="text-gray-400 py-4">
+            <p class="text-sm">&copy; 2025 Agustin Clemente</p>
+        </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

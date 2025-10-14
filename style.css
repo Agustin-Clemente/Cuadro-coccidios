@@ -1,0 +1,99 @@
+
+        /* Estilos fijos para Modo Oscuro y componentes interactivos */
+        body, .bg-white {
+            transition: background-color 0.3s;
+        }
+        
+        /* Contenedores de opciones */
+        .option-item {
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s, border 0.2s;
+            /* Propiedad clave para el orden: mantener el orden original del DOM */
+            order: 0; 
+        }
+        .option-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* Destinos de click (celdas o slots) - UNFILLED STATE (default) */
+        .click-target {
+            min-height: 48px; 
+            border: 2px dashed #4b5563; /* Borde punteado para indicar slot vacío (bg-gray-600) */
+            background-color: #1f2937; /* bg-gray-800 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px; 
+            cursor: pointer;
+            transition: border-color 0.2s, background-color 0.2s;
+            text-align: center;
+        }
+
+        /* ESTADO DE TARGET LLENO (FILLED STATE) - Nuevo fondo para indicar ocupado */
+        .click-target.filled-target {
+            border: 2px solid #374151; /* Color del fondo para borde integrado (bg-gray-700) */
+            background-color: #374151; /* Nuevo Fondo para slot lleno (bg-gray-700) */
+            padding: 2px;
+        }
+        
+        /* Estilos para el Ítem dentro del Target lleno */
+        .click-target.filled-target .option-item {
+            background-color: transparent !important; 
+            color: #d1d5db !important; 
+            border-radius: 0; 
+            padding: 0 !important;
+            transform: none !important;
+            box-shadow: none !important; 
+            border: none !important; 
+            line-height: 1.2; 
+        }
+        
+        /* ESTADO NUEVO: Ítem seleccionado E integrado (listo para moverse) */
+        .click-target.filled-target .option-item.selected {
+            background-color: transparent !important;
+            border: 2px solid #34d399 !important; 
+            box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.5);
+            color: #34d399 !important;
+            transform: none !important;
+            padding: 4px 8px !important; 
+            border-radius: 8px !important;
+        }
+
+
+        /* Estados interactivos */
+        .selected {
+            background-color: #34d399; /* bg-emerald-300 más brillante */
+            color: #111827; /* Texto oscuro para alto contraste */
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px -1px rgba(52, 211, 153, 0.7), 0 2px 4px -2px rgba(52, 211, 153, 0.7);
+            border: 2px solid #10b981;
+        }
+        
+        /* ESTADO VERIFICACIÓN: CORRECTO */
+        .click-target.correct,
+        .click-target.correct.filled-target {
+            background-color: #065f46; /* dark green */
+            border-color: #10b981;
+            color: white;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5); /* Sombra verde */
+        }
+        
+        /* ESTADO VERIFICACIÓN: INCORRECTO */
+        .click-target.incorrect, 
+        .click-target.incorrect.filled-target {
+            background-color: #b91c1c; /* Fondo Rojo Fuerte (Red-700) */
+            border-color: #f87171; /* Borde Rojo Claro (Red-400) */
+            color: white;
+            /* Efecto adicional para garantizar visibilidad */
+            box-shadow: 0 0 10px rgba(248, 113, 113, 0.5); 
+        }
+        
+        .click-target.hovered, .click-target:hover {
+            border-color: #3b82f6; /* blue-500 */
+        }
+        
+        /* Aplicar una fuente base más grande y agradable */
+        body {
+            font-size: 1.125rem; /* text-lg equivalent */
+        }
