@@ -383,7 +383,7 @@
                 feedbackElement.classList.remove('hidden', 'bg-green-700', 'bg-red-700');
                 
                 if (percentage === 100) {
-                    feedbackElement.textContent = `¡Felicidades! Secuencia de Eimeria correcta.`;
+                    feedbackElement.textContent = `¡Felicidades! Secuencia de Eimeria spp. correcta.`;
                     feedbackElement.classList.add('bg-green-700');
                     feedbackElement.classList.remove('bg-red-700');
                 } else {
